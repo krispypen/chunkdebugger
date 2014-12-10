@@ -12,6 +12,7 @@ public class Application extends Controller {
 			// Called when the stream is ready
 			@Override
 			public void onReady(Chunks.Out<String> out) {
+				System.out.println("ready");
 				out.onDisconnected(new F.Callback0() {
 
 					@Override
@@ -20,13 +21,12 @@ public class Application extends Controller {
 					}
 				});
 				out.write("ok\n");
-				System.out.println("ready");
 				try {
 					Thread.sleep(10000);
-					out.write("10 seconds later\n");
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
+				out.write("10 seconds later\n");
 			}
 		};
 		try {
